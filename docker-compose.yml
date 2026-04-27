@@ -1,9 +1,14 @@
 services:
 
   worker:
-    build: .
-    hostname: local-worker
+    image: ynput/ayon-ash:latest
+    hostname: worker01
     restart: unless-stopped
+    # depends_on:
+    #   - server
+    environment:
+     - "AYON_API_KEY={API_KEY}"
+     - "AYON_SERVER_URL=https://gs-animation.ayon.app"
     volumes:
      - "/var/run/docker.sock:/var/run/docker.sock"
-     - "./.env:/ash/.env"
+  
