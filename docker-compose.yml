@@ -7,7 +7,7 @@ services:
     # depends_on:
     #   - server
     environment:
-     - "AYON_API_KEY={API_KEY}"
+     - "AYON_API_KEY=${API_KEY}"
      - "AYON_SERVER_URL=https://gs-animation.ayon.app"
     volumes:
      - "/var/run/docker.sock:/var/run/docker.sock"
