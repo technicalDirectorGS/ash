@@ -1,14 +1,43 @@
 services:
-
   worker:
     image: ynput/ayon-ash:latest
     hostname: worker01
     restart: unless-stopped
-    # depends_on:
-    #   - server
     environment:
-     - "AYON_API_KEY=${API_KEY}"
-     - "AYON_SERVER_URL=https://gs-animation.ayon.app"
+      - "AYON_API_KEY=${API_KEY}"
+      - "AYON_SERVER_URL=https://gs-animation.ayon.app"
     volumes:
-     - "/var/run/docker.sock:/var/run/docker.sock"
-  
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "vol_k:/mnt/k"
+      - "vol_x:/mnt/x"
+      - "vol_y:/mnt/y"
+      - "vol_z:/mnt/z"
+
+volumes:
+  vol_k:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.1.84/gs-work1"
+      o: "username=${NAS_USER},password=${NAS_PASS},domain=sm29,file_mode=0777,dir_mode=0777"
+      
+  vol_x:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.1.85/gs-work2"
+      o: "username=${NAS_USER},password=${NAS_PASS},domain=sm29,file_mode=0777,dir_mode=0777"
+      
+  vol_y:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.1.88/gs-work3"
+      o: "username=${NAS_USER},password=${NAS_PASS},domain=sm29,file_mode=0777,dir_mode=0777"
+      
+  vol_z:
+    driver: local
+    driver_opts:
+      type: cifs
+      device: "//192.168.1.88/gs-work4"
+      o: "username=${NAS_USER},password=${NAS_PASS},domain=sm29,file_mode=0777,dir_mode=0777"
