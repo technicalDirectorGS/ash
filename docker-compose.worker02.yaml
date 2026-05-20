@@ -1,0 +1,14 @@
+services:
+
+  
+  worker:
+    container_name: worker02
+    image: ynput/ayon-ash:latest
+    hostname: worker02
+    restart: unless-stopped
+    environment:
+      - "AYON_API_KEY=${API_KEY_WORKER2}"
+      - "AYON_SERVER_URL=${SERVER_URL_LOCAL}"
+
+   
+

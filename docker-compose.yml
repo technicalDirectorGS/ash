@@ -1,10 +1,11 @@
 services:
-  worker:
+  worker01:
+    container_name: worker01
     image: ynput/ayon-ash:latest
     hostname: worker01
     restart: unless-stopped
     environment:
-      - "AYON_API_KEY=${API_KEY}"
+      - "AYON_API_KEY=${API_KEY_WORKER1}"
       - "AYON_SERVER_URL=${SERVER_URL}"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
